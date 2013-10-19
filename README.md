@@ -12,7 +12,7 @@ The functionality itself is fairly simple, building upon the libraries:
 and
 <a href="https://github.com/SimplyScala/scalatest-embedmongo">Scalatest Embed Mongo</a>
 
-Here is just one example showing the majority of what is one offer from this project:
+Here is just one example showing the majority of what is on offer from this project:
 
 ```scala
 class MongoIntegrationSpec extends PlaySpecification {
@@ -62,6 +62,7 @@ Initially I only wanted to use this "embedded Mongodb" functionality within Play
 and as with BDD/TDD applications, you should only code what you need (and so long as your code adheres to all necessary standards/idioms, future amendments should be straight forward).
 
 When running a "spec", Play is in "test" mode and so will use the configuration file "application.test.conf".
+Note that this configuation file is actually picked up by "Global", a simple customisation of Play's "GlobalSettings".
 
 The next mixin to the example is "MongoEmbedded".
 This trait extends "com.github.simplyscala.MongoEmbedDatabase" and essentially provides a DSL for your example.
@@ -76,16 +77,16 @@ or more likely, one that does not exist.
 
 The next part of the example is the available DSL:
 ```scala
-withMongo(mongo) seed "user" fromFilePath "./test/resources/users.json" withExtraArgs "--jsonArray" apply
+withMongo(mongo) seed "user" fromFilePath "./test/resources/users.json" withExtraArgs "--jsonArray"
 ```
 
 We can "seed" the embedded Mongodb by stipulating:
-- the collection to seed, in this case "user"
+- the collection to seed, in this case "user".
 - provide the actual seed data from a file, in this case in a JSON format.
 - and any extra "args" required for the chosen formatting of the seed data.
 
 The underlying functionality seeds the embedded Mongodb using Mongdb's "mongoimport" tool.
-For more information on this such as possible file formats, see <a href="http://docs.mongodb.org/manual/reference/program/mongoimport/">mongoimport</a>
+For more information on this such as possible file formats, see <a href="http://docs.mongodb.org/manual/reference/program/mongoimport/">mongoimport</a>.
 
 Within the example itself, note that we do indeed "pass on" the wrapped Casbah Mongodb interface to our "UserDAO",
 and the rest should be self describing.
