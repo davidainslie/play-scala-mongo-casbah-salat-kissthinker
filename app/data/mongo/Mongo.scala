@@ -12,7 +12,7 @@ trait Mongo {
 
   val port: Int = configuration.getInt("mongodb.port").getOrElse(Network.getFreeServerPort)
 
-  val db: String = configuration.getString("mongodb.db").getOrElse("licensing")
+  val db: String = configuration.getString("mongodb.db").getOrElse("kissthinker")
 
   val mongodb: MongoDB = MongoConnection(host, port)(db)
 
