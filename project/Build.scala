@@ -2,10 +2,11 @@ import sbt._
 import Keys._
 
 object ApplicationBuild extends Build {
-
   val appName         = "play-scala-mongo-casbah-salat-kissthinker"
 
   val appVersion      = "1.0.0"
+
+  val scalaVersion    = "2.11.1"
 
   val appDependencies = Seq(
     // Add your project dependencies here,
